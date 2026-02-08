@@ -1,105 +1,115 @@
-🛡️ Proyecto Final de Calidad del Software
+# 🛡️ Proyecto Final – Calidad del Software
 
-Software Testing Suite: Cypress, Katalon & Postman
+## Software Testing Suite: Cypress, Katalon & Postman
 
-Este repositorio contiene la suite de pruebas automatizadas desarrollada para la plataforma Restful Booker Platform (https://automationintesting.online/).
+Este repositorio contiene la **suite de pruebas automatizadas** desarrollada para la plataforma **Restful Booker Platform**  
+https://automationintesting.online/
 
-El proyecto integra pruebas de extremo a extremo (E2E), funcionales y de API, cubriendo flujos críticos de negocio, validaciones de seguridad y manejo de errores.
+El proyecto integra pruebas **End-to-End (E2E)**, **funcionales** y **de API**, cubriendo flujos críticos de negocio, validaciones de seguridad y manejo de errores conocidos.
 
-🛠️ Tecnologías y Cobertura
+---
 
-1. Cypress (E2E Testing)
+## 🛠️ Tecnologías y Cobertura
 
-Scripts modulares ubicados en la carpeta /Pruebas Cypress. Se implementaron patrones de diseño como Hooks (beforeEach) para optimizar la reutilización de código y mantener las pruebas limpias.
+### 1️⃣ Cypress – End-to-End Testing (E2E)
 
-Archivo
+Las pruebas E2E están desarrolladas con **Cypress**, utilizando scripts modulares ubicados en la carpeta:
 
-Descripción de Escenarios (CPs)
+/Pruebas Cypress
 
-01_Auth_Testing.cy.js
+Se aplican buenas prácticas como:
+- Uso de Hooks (`beforeEach`)
+- Reutilización de código
+- Limpieza automática de datos post-ejecución
 
-Seguridad: Login exitoso/fallido y Logout. Incluye un workaround técnico para manejar un Bug 500 del servidor al cerrar sesión.
+#### 📂 Archivos y Escenarios de Prueba (CPs)
 
-02_Admin_Management.cy.js
+| Archivo | Descripción |
+|------|------------|
+| **01_Auth_Testing.cy.js** | Seguridad: Login exitoso/fallido y Logout. Incluye un workaround técnico para manejar un Bug 500 del servidor durante el cierre de sesión. |
+| **02_Admin_Management.cy.js** | Gestión Administrativa: CRUD de habitaciones. Incluye validaciones negativas (no permitir crear habitaciones sin precio) y limpieza automática de datos. |
+| **03_Public_Frontend.cy.js** | Experiencia de Usuario: Validación del formulario de contacto, navegación, validaciones visuales de UI y lógica de reservas fallidas. |
 
-Gestión Admin: CRUD de habitaciones. Incluye validación negativa (impedir creación sin precio) y limpieza automática de datos post-prueba.
+---
 
-03_Public_Frontend.cy.js
+### 2️⃣ Postman – API Testing
 
-Experiencia de Usuario: Formulario de contacto, validación visual de UI, navegación y lógica de reservas fallidas.
+Colección completa de pruebas automatizadas para la API REST de la plataforma.
 
-2. Postman (API Testing)
+Ubicación:
+/Pruebas Postman/Pruebas.Restful Booker Platform
 
-Colección completa con 10 Checkpoints (CP-01 a CP-10) para validar la API REST.
+#### 🔍 Cobertura
 
-Ubicación: /Pruebas Postman/Pruebas.Restful Booker Platform
+- 10 Checkpoints (CP-01 a CP-10)
+- Métodos HTTP: GET, POST, PUT, DELETE
+- Endpoints:
+  - /auth
+  - /room
+  - /branding
+  - /message
 
-Características Avanzadas:
+#### ⚙️ Características Avanzadas
 
-Auth Automática: Script en Tests para capturar el token de login y guardarlo en variables globales (token_hotel) para las siguientes peticiones.
+- Autenticación automática mediante captura del token de login y almacenamiento en la variable global `token_hotel`
+- Validación de tiempo de respuesta menor a 2000 ms
+- Gestión automática de variables sin configuración manual
 
-Performance: Validaciones de tiempo de respuesta (<2000ms).
+---
 
-Cobertura: Métodos GET, POST, PUT, DELETE en endpoints de /room, /auth, /branding y /message.
+### 3️⃣ Katalon Recorder – Automatización Funcional
 
-3. Katalon Recorder (Grabación Funcional)
+Scripts de automatización grabados con **Katalon Recorder**, almacenados en formato `.json`.
 
-Scripts de automatización (.json) para la reproducción de flujos de usuario en el navegador, ubicados en /Pruebas Katalon.
+Ubicación:
+/Pruebas Katalon
 
-Escenarios Automatizados:
+#### 🎯 Escenarios Automatizados
 
-crear-habitacion.json ➝ Flujo administrativo de alta de inventario.
+| Archivo | Descripción |
+|------|------------|
+| crear-habitacion.json | Flujo administrativo para creación de habitaciones |
+| enviar-mensaje.json | Validación del formulario de contacto público |
+| login.json | Autenticación de usuarios |
+| probar-enlaces.json | Smoke test de navegación |
+| reservar-habitacion.json | Flujo completo de reserva (Booking) |
 
-enviar-mensaje.json ➝ Validación del formulario de contacto público.
+---
 
-login.json ➝ Autenticación de usuarios.
+## 🚀 Instrucciones de Ejecución
 
-probar-enlaces.json ➝ Smoke test de navegación.
+### Cypress
 
-reservar-habitacion.json ➝ Flujo completo de reserva (Booking).
+1. npm install
+2. npx cypress open
+3. Ejecutar los specs E2E en Chrome o Electron.
 
-🚀 Instrucciones de Ejecución
+### Postman
 
-Cypress
+1. Importar la colección desde /Pruebas Postman
+2. Ejecutar con Collection Runner  
+Nota: El token de sesión se gestiona automáticamente.
 
-Instalar dependencias:
+### Katalon Recorder
 
-npm install
+1. Instalar la extensión en Chrome o Firefox
+2. Importar los archivos JSON desde /Pruebas Katalon
+3. Ejecutar con Play Suite
 
+---
 
-Abrir la interfaz de pruebas:
+## 🐛 Manejo de Errores Conocidos
 
-npx cypress open
+### Bug 500 en Logout
 
+El servidor retorna un error 500 al cerrar sesión bajo ciertas condiciones.
 
-Seleccionar E2E Testing y ejecutar los specs en el navegador de preferencia (Chrome/Electron).
+Solución:  
+En el script `01_Auth_Testing.cy.js` se valida la redirección correcta al Home mediante `cy.url().should(...)`, permitiendo continuar la prueba a pesar del error del backend.
 
-Postman
+---
 
-Abrir Postman.
+## ✒️ Autores
 
-Importar el archivo .json desde la carpeta /Pruebas Postman.
-
-Ejecutar la colección completa usando Collection Runner.
-
-Nota: La colección gestiona automáticamente el token de sesión, no es necesario configurarlo manualmente.
-
-Katalon
-
-Instalar la extensión Katalon Recorder en tu navegador (Chrome/Firefox).
-
-Abrir la extensión e importar los archivos .json de la carpeta /Pruebas Katalon.
-
-Dar clic en Play Suite para reproducir las acciones grabadas.
-
-🐛 Manejo de Errores Conocidos
-
-Bug 500 en Logout: Se detectó que el servidor retorna un error interno (500) al cerrar sesión bajo ciertas condiciones.
-
-Solución: El script de Cypress 01_Auth_Testing incluye una validación adaptada (cy.url().should...) para confirmar que, a pesar del error del servidor, la redirección al home sea correcta.
-
-✒️ Autores
-
-John Steven Lopez Velez
-
-Ariel Gonzalo Moreira Macías
+- John Steven Lopez Vélez
+- Ariel Gonzalo Moreira Macías
