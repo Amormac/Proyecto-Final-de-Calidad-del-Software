@@ -1,0 +1,186 @@
+{
+    "configuration": {
+        "device": {
+            "orientation": "landscape",
+            "deviceName": "Desktop"
+        }
+    },
+    "type": "clickpath",
+    "version": "1.0",
+    "events": [
+        {
+            "description": "Loading of \"https://automationintesting.online/\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "https://automationintesting.online/"
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "a:contains(\"Book now\")"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "dom",
+                        "value": "document.evaluate('//div[@id=\\'root-container\\']/div/div[2]/div/div[2]/div/div/form/div/div/div[2]/div[3]', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "Loading of \"https://automationintesting.online/reservation/1?checkin=2026-02-01&checkout=2026-02-02\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "https://automationintesting.online/reservation/1?checkin=2026-02-01&checkout=2026-02-02"
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#doReservation"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "[name=\"firstname\"]"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "[name=\"lastname\"]"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "[name=\"email\"]"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "[name=\"phone\"]"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "dom",
+                        "value": "document.evaluate('//div[@id=\\'root-container\\']/div/div[2]/div/div[2]/div/div/form/button', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        }
+    ]
+}

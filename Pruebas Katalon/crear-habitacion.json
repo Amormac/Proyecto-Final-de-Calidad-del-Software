@@ -1,0 +1,266 @@
+{
+    "configuration": {
+        "device": {
+            "orientation": "landscape",
+            "deviceName": "Desktop"
+        }
+    },
+    "type": "clickpath",
+    "version": "1.0",
+    "events": [
+        {
+            "description": "Loading of \"https://automationintesting.online/admin\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "https://automationintesting.online/admin"
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "#username"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "#password"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#doLogin"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "a:contains(\"Rooms\")"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "#roomName"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "#roomPrice"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "select option",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "\n                    let add = false;\n                    let x = typeof $ !== 'undefined' ? $('#type')[0] : document.querySelector('#type');\n                    for (i = 0; i < x.options.length; i++) {\n                        if (x.options[i].text === \"Double\") {\n                            if(add) {\n                                x.options[i].selected = true;\n                            } else {\n                                x.options.selectedIndex = i;\n                            }\n                        }\n                    }"
+        },
+        {
+            "description": "select option",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": "\n                    let add = false;\n                    let x = typeof $ !== 'undefined' ? $('#accessible')[0] : document.querySelector('#accessible');\n                    for (i = 0; i < x.options.length; i++) {\n                        if (x.options[i].text === \"true\") {\n                            if(add) {\n                                x.options[i].selected = true;\n                            } else {\n                                x.options.selectedIndex = i;\n                            }\n                        }\n                    }"
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#wifiCheckbox"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#refreshCheckbox"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#tvCheckbox"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#viewsCheckbox"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#createRoom"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#roomName106"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        }
+    ]
+}

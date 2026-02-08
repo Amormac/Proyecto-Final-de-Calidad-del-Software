@@ -1,0 +1,131 @@
+{
+    "configuration": {
+        "device": {
+            "orientation": "landscape",
+            "deviceName": "Desktop"
+        }
+    },
+    "type": "clickpath",
+    "version": "1.0",
+    "events": [
+        {
+            "description": "Loading of \"https://automationintesting.online/admin\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "https://automationintesting.online/admin"
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "#username"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "#password"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "css",
+                        "value": "#doLogin"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "waitForElementPresent",
+            "wait": {
+                "waitFor": "validation",
+                "timeoutInMilliseconds": 60000,
+                "validation": {
+                    "target": {
+                        "locators": [
+                            {
+                                "type": "css",
+                                "value": "a:contains(\"Rooms\")"
+                            }
+                        ]
+                    },
+                    "type": "element_match",
+                    "failIfFound": false,
+                    "match": ""
+                }
+            },
+            "target": {},
+            "type": "javascript",
+            "javaScript": ""
+        },
+        {
+            "description": "click",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {
+                "locators": [
+                    {
+                        "type": "dom",
+                        "value": "document.evaluate('//div[@id=\\'navbarSupportedContent\\']/ul[2]/li[2]/button', document, null, XPathResult.ANY_TYPE, null).iterateNext()"
+                    }
+                ]
+            },
+            "type": "click",
+            "button": 0
+        },
+        {
+            "description": "Loading of \"https://automationintesting.online/\"",
+            "wait": {
+                "waitFor": "page_complete"
+            },
+            "target": {},
+            "type": "navigate",
+            "url": "https://automationintesting.online/"
+        }
+    ]
+}
