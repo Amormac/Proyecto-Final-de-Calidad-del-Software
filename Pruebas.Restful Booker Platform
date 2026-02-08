@@ -1,0 +1,556 @@
+{
+  "info": {
+    "_postman_id": "a8fbc2b9-468a-4095-9d8c-84412c18e04f",
+    "name": "Pruebas",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51492189",
+    "_collection_link": "https://go.postman.co/collection/37754647-a8fbc2b9-468a-4095-9d8c-84412c18e04f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "CP-01 Obtener Habitaciones",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Verifica que el código de respuesta sea 200 (o 201)",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 2000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://automationintesting.online/api/room/",
+          "protocol": "https",
+          "host": [
+            "automationintesting",
+            "online"
+          ],
+          "path": [
+            "api",
+            "room",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CP-02 Login (Auth)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Verifica que el código de respuesta sea 200 (o 201)",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 3000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});",
+              "",
+              "// Verificamos que el login fue exitoso",
+              "pm.test(\"Login exitoso\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "// TRUCO PRO: Guardar el token automáticamente",
+              "var jsonData = pm.response.json();",
+              "if(jsonData.token) {",
+              "    // Guarda el token en una variable global llamada \"token_hotel\"",
+              "    pm.globals.set(\"token_hotel\", jsonData.token);",
+              "    console.log(\"Token guardado: \" + jsonData.token);",
+              "}"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"password\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://automationintesting.online/api/auth/login",
+          "protocol": "https",
+          "host": [
+            "automationintesting",
+            "online"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CP-03: Crear una Habitación",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Verifica que el código de respuesta sea 200 (o 201)",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 2000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});",
+              "",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disabledSystemHeaders": {}
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "token={{token_hotel}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"roomName\": \"110\",\n    \"type\": \"Suite\",\n    \"accessible\": true,\n    \"description\": \"Prueba mijo\",\n    \"image\": \"https://www.mwtestconsultancy.co.uk/img/testim_1.jpg\",\n    \"roomPrice\": 500,\n    \"features\": [\n        \"WiFi\",\n        \"TV\"\n    ]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://automationintesting.online/api/room/",
+          "protocol": "https",
+          "host": [
+            "automationintesting",
+            "online"
+          ],
+          "path": [
+            "api",
+            "room",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CP-04 Ver Habitacion ID",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Verifica que el código de respuesta sea 200 (o 201)",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 2000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});",
+              "",
+              "// 1. Convertimos la respuesta a un objeto JSON manejable",
+              "var jsonData = pm.response.json();",
+              "",
+              "// 2. Validamos que el nombre de la habitación sea el correcto",
+              "pm.test(\"El nombre de la habitación es correcto\", function () {",
+              "    // Cambia \"8080\" por el nombre que esperas recibir",
+              "    pm.expect(jsonData.roomName).to.eql(\"102\");",
+              "});",
+              "",
+              "// 3. Validamos que tenga precio",
+              "pm.test(\"La habitación tiene precio definido\", function () {",
+              "    pm.expect(jsonData.roomPrice).to.be.above(0);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://automationintesting.online/api/room/2",
+          "protocol": "https",
+          "host": [
+            "automationintesting",
+            "online"
+          ],
+          "path": [
+            "api",
+            "room",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CP-05 Actualizar Habitacion",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Verifica que el código de respuesta sea 200 (o 201)",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 2000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "cookie",
+            "value": "token={{token_hotel}}",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"roomName\": \"8080\",\n    \"type\": \"Suite\",\n    \"accessible\": true,\n    \"description\": \"Precio actualizado con Postman\",\n    \"image\": \"https://www.mwtestconsultancy.co.uk/img/testim_1.jpg\",\n    \"roomPrice\": 900,\n    \"features\": [\"WiFi\", \"TV\", \"Safe\"]\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://automationintesting.online/api/room/4",
+          "protocol": "https",
+          "host": [
+            "automationintesting",
+            "online"
+          ],
+          "path": [
+            "api",
+            "room",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CP-06 Borrar Habitacion",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Verifica que el código de respuesta sea 200 (o 201)",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 3000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(3000);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "token={{token_hotel}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://automationintesting.online/api/room/2",
+          "protocol": "https",
+          "host": [
+            "automationintesting",
+            "online"
+          ],
+          "path": [
+            "api",
+            "room",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CP-07 Obtener Branding",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Verifica que el código de respuesta sea 200 (o 201)",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 2000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://automationintesting.online/api/branding/",
+          "protocol": "https",
+          "host": [
+            "automationintesting",
+            "online"
+          ],
+          "path": [
+            "api",
+            "branding",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CP-08 Enviar Mensaje",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Verifica que el código de respuesta sea 200 (o 201)",
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 2000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Ariel Postman\",\n    \"email\": \"ariel@test.com\",\n    \"phone\": \"099912345678\",\n    \"subject\": \"Prueba de API\",\n    \"description\": \"Este mensaje fue enviado desde Postman\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://automationintesting.online/api/message/",
+          "protocol": "https",
+          "host": [
+            "automationintesting",
+            "online"
+          ],
+          "path": [
+            "api",
+            "message",
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CP-09 Login Fallido",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Verifica que el código de respuesta sea 200 (o 201)",
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 2000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"PASSWORD_FALSO_123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://automationintesting.online/api/auth/login",
+          "protocol": "https",
+          "host": [
+            "automationintesting",
+            "online"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "CP-10 Borrar Sin Permiso",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Verifica que el código de respuesta sea 200 (o 201)",
+              "pm.test(\"Status code is 401\", function () {",
+              "    pm.response.to.have.status(401);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 2000ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(2000);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://automationintesting.online/api/room/1",
+          "protocol": "https",
+          "host": [
+            "automationintesting",
+            "online"
+          ],
+          "path": [
+            "api",
+            "room",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
